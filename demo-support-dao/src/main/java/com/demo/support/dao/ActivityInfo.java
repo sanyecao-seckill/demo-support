@@ -1,5 +1,7 @@
 package com.demo.support.dao;
 
+import java.util.Date;
+
 /**
  * @Description:
  * @Author: wangzhangfei5
@@ -10,6 +12,11 @@ public class ActivityInfo {
 
     private long id;
     private String activityName;
+    private String productId;
+    private Date activityStart;
+    private Date activityEnd;
+    private Integer limitNum;
+    private Integer stockNum;
 
     public long getId() {
         return id;
@@ -25,5 +32,45 @@ public class ActivityInfo {
 
     public void setActivityName(String activityName) {
         this.activityName = activityName;
+    }
+
+    public String getProductId() {
+        return productId;
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
+    }
+
+    public Date getActivityStart() {
+        return activityStart;
+    }
+
+    public void setActivityStart(Date activityStart) {
+        this.activityStart = activityStart;
+    }
+
+    public Date getActivityEnd() {
+        return activityEnd;
+    }
+
+    public void setActivityEnd(Date activityEnd) {
+        this.activityEnd = activityEnd;
+    }
+
+    public Integer getLimitNum() {
+        return limitNum;
+    }
+
+    public void setLimitNum(Integer limitNum) {
+        this.limitNum = limitNum;
+    }
+
+    public Integer getStockNum() {
+        return stockNum;
+    }
+
+    public void setStockNum(Integer stockNum) {
+        this.stockNum = stockNum;
     }
 }

@@ -4,14 +4,22 @@
   <resultMap id="BaseResultMap" type="com.demo.support.dao.ActivityInfo" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="activity_name" property="activityName" jdbcType="VARCHAR" />
+    <result column="product_id" property="productId" jdbcType="VARCHAR" />
+    <result column="activity_start" property="activityStart" jdbcType="DATE" />
+    <result column="activity_end" property="activityEnd" jdbcType="DATE" />
+    <result column="limit_num" property="limitNum" jdbcType="INTEGER" />
+    <result column="stock_num" property="stockNum" jdbcType="INTEGER" />
   </resultMap>
 
   <sql id="Base_Column_List" >
-    id, activity_name
+    id, activity_name,product_id,activity_start,activity_end,limit_num,stock_num
   </sql>
 
   <insert id="insert" parameterType="com.demo.support.dao.ActivityInfo" useGeneratedKeys="true" keyProperty="id">
-    insert into seckill_activity(activity_name) values (#{activityName})
+    insert into seckill_activity(
+    activity_name,product_id,activity_start,activity_end,limit_num,stock_num)
+    values (#{activityName},#{productId},#{activityStart},#{activityEnd},
+    #{limitNum},#{stockNum})
   </insert>
 
   <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Long" >

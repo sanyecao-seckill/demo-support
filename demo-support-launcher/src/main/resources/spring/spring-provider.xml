@@ -9,7 +9,13 @@
     <dubbo:protocol name="dubbo"/>
     <dubbo:registry address="127.0.0.1:2181" register="false"/>
 
-    <bean id="activityExportService" class="com.demo.support.export.ActivityExportServiceImpl"/>
+    <bean id="activityExportService" class="com.demo.support.export.impl.ActivityExportServiceImpl"/>
     <dubbo:service interface="com.demo.support.export.ActivityExportService" ref="activityExportService"/>
+
+    <bean id="productExportService" class="com.demo.support.export.impl.ProductExportServiceImpl"/>
+    <dubbo:service interface="com.demo.support.export.ProductExportService" ref="productExportService"/>
+
+    <bean id="settlementExportService" class="com.demo.support.export.impl.SettlementExportServiceImpl"/>
+    <dubbo:service interface="com.demo.support.export.SettlementExportService" ref="settlementExportService"/>
 
 </beans>

@@ -1,15 +1,16 @@
-package com.demo.support.export;
+package com.demo.support.export.impl;
 
 import com.demo.support.ActivityService;
 import com.demo.support.constant.ResultCodeConstant;
 import com.demo.support.dao.ActivityInfo;
 import com.demo.support.dto.Result;
 import com.demo.support.dto.SeckillActivityDTO;
+import com.demo.support.export.ActivityExportService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class ActivityExportServiceImpl implements ActivityExportService{
+public class ActivityExportServiceImpl implements ActivityExportService {
 
     Logger logger = LogManager.getLogger(ActivityExportServiceImpl.class);
 
