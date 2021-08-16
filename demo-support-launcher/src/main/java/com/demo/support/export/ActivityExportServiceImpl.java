@@ -1,0 +1,39 @@
+package com.demo.support.export;
+
+import com.demo.support.ActivityService;
+import com.demo.support.constant.ResultCodeConstant;
+import com.demo.support.dao.ActivityInfo;
+import com.demo.support.dto.Result;
+import com.demo.support.dto.SeckillActivityDTO;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+
+public class ActivityExportServiceImpl implements ActivityExportService{
+
+    Logger logger = LogManager.getLogger(ActivityExportServiceImpl.class);
+
+    @Autowired
+    ActivityService activityService;
+
+    @Override
+    public Result<Integer> createActivity(SeckillActivityDTO activityDTO) {
+        try{
+            ActivityInfo activityInfo = new ActivityInfo();
+            activityInfo.setActivityName(activityDTO.getActivityName());
+            int count = activityService.createActivity(activityInfo);
+            return new Result<>(count);
+        }catch (Exception e){
+            logger.error("发生异常了",e);
+        }
+        return new Result<>(ResultCodeConstant.SYSTEM_EXCEPTION,"系统异常",null);
+    }
+
+    @Override
+    public Result<SeckillActivityDTO> queryActivity(Long id) {
+        ActivityInfo activityInfo = activityService.queryActivityById(id);
+        SeckillActivityDTO activityDTO = new SeckillActivityDTO();
+        activityDTO.setActivityName(activityInfo.getActivityName());
+        return new Result<>(activityDTO);
+    }
+}
