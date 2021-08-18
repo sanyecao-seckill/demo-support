@@ -9,17 +9,18 @@
     <result column="activity_end" property="activityEnd" jdbcType="DATE" />
     <result column="limit_num" property="limitNum" jdbcType="INTEGER" />
     <result column="stock_num" property="stockNum" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
   </resultMap>
 
   <sql id="Base_Column_List" >
-    id, activity_name,product_id,activity_start,activity_end,limit_num,stock_num
+    id, activity_name,product_id,activity_start,activity_end,limit_num,stock_num,status
   </sql>
 
   <insert id="insert" parameterType="com.demo.support.dao.ActivityInfo" useGeneratedKeys="true" keyProperty="id">
     insert into seckill_activity(
-    activity_name,product_id,activity_start,activity_end,limit_num,stock_num)
+    activity_name,product_id,activity_start,activity_end,limit_num,stock_num,status)
     values (#{activityName},#{productId},#{activityStart},#{activityEnd},
-    #{limitNum},#{stockNum})
+    #{limitNum},#{stockNum},#{status})
   </insert>
 
   <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Long" >
@@ -27,6 +28,16 @@
     <include refid="Base_Column_List" />
     from seckill_activity
     where id = #{id}
+  </select>
+
+  <select id="selectByProductId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from seckill_activity
+    where product_id = #{productId}
+    and status = 1
+    order by id asc
+    limit 1
   </select>
 
 

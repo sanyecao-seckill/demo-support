@@ -17,6 +17,7 @@ public class ActivityInfo {
     private Date activityEnd;
     private Integer limitNum;
     private Integer stockNum;
+    private Integer status;//0:未开始  1：已开始  2：已结束
 
     public long getId() {
         return id;
@@ -72,5 +73,13 @@ public class ActivityInfo {
 
     public void setStockNum(Integer stockNum) {
         this.stockNum = stockNum;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 }

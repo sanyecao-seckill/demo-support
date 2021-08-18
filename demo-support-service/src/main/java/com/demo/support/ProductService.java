@@ -15,9 +15,9 @@ public interface ProductService {
 
     /**
      * 查询商品
-     * @param id
+     * @param productId
      * @return
      */
-    Result<ProductInfoDTO> queryProduct(Long id);
+    Result<ProductInfoDTO> queryProduct(String productId);
 
 }

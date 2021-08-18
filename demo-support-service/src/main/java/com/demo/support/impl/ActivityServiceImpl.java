@@ -24,7 +24,7 @@ public class ActivityServiceImpl implements ActivityService {
     }
 
     @Override
-    public ActivityInfo queryActivityById(Long id) {
-        return activityMapper.selectById(id);
+    public ActivityInfo queryActivityById(String productId) {
+        return activityMapper.selectByProductId(productId);
     }
 }

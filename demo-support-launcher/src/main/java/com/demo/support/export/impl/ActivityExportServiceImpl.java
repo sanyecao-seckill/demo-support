@@ -8,6 +8,7 @@ import com.demo.support.dto.SeckillActivityDTO;
 import com.demo.support.export.ActivityExportService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class ActivityExportServiceImpl implements ActivityExportService {
@@ -21,8 +22,11 @@ public class ActivityExportServiceImpl implements ActivityExportService {
     public Result<Integer> createActivity(SeckillActivityDTO activityDTO) {
         try{
             ActivityInfo activityInfo = new ActivityInfo();
-            activityInfo.setActivityName(activityDTO.getActivityName());
+
+            BeanUtils.copyProperties(activityDTO,activityInfo);
+
             int count = activityService.createActivity(activityInfo);
+
             return new Result<>(count);
         }catch (Exception e){
             logger.error("发生异常了",e);
@@ -31,10 +35,13 @@ public class ActivityExportServiceImpl implements ActivityExportService {
     }
 
     @Override
-    public Result<SeckillActivityDTO> queryActivity(Long id) {
-        ActivityInfo activityInfo = activityService.queryActivityById(id);
+    public Result<SeckillActivityDTO> queryActivity(String productId) {
+        ActivityInfo activityInfo = activityService.queryActivityById(productId);
+
         SeckillActivityDTO activityDTO = new SeckillActivityDTO();
-        activityDTO.setActivityName(activityInfo.getActivityName());
+
+        BeanUtils.copyProperties(activityInfo,activityDTO);
+
         return new Result<>(activityDTO);
     }
 }

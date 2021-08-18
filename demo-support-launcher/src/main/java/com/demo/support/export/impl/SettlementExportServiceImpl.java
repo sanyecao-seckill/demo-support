@@ -17,6 +17,20 @@ public class SettlementExportServiceImpl implements SettlementExportService {
 
     @Override
     public Result<String> submitOrder(SettlementOrderDTO orderDTO) {
+        //1.校验
+
+        //2.下单-初始化
+
+        //3.更新库存
+
+        //4.更新订单-成功
+
         return null;
+    }
+
+    @Override
+    public Result<String> payPageUrl(String orderId) {
+        String payPageUrl = "http://localhost:8080/payPage?orderId="+orderId;
+        return new Result<>(payPageUrl);
     }
 }

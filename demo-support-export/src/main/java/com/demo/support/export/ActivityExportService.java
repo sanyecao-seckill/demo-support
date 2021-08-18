@@ -14,10 +14,10 @@ public interface ActivityExportService {
 
 
     /**
-     * 查询活动
-     * @param id
+     * 查询活动(查询活动最近的一场)
+     * @param productId
      * @return
      */
-    Result<SeckillActivityDTO> queryActivity(Long id);
+    Result<SeckillActivityDTO> queryActivity(String productId);
 
 }

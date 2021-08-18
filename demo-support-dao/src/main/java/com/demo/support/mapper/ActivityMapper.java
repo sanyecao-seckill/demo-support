@@ -1,6 +1,7 @@
 package com.demo.support.mapper;
 
 import com.demo.support.dao.ActivityInfo;
+import org.apache.ibatis.annotations.Param;
 
 public interface ActivityMapper {
 
@@ -17,5 +18,12 @@ public interface ActivityMapper {
      * @return
      */
     ActivityInfo selectById(Long id);
+
+    /**
+     * 查询活动(最近的一场)
+     * @param productId
+     * @return
+     */
+    ActivityInfo selectByProductId(@Param("productId") String productId);
 
 }

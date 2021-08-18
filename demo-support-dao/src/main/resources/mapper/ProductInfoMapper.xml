@@ -6,7 +6,7 @@
     <result column="product_name" property="productName" jdbcType="VARCHAR" />
     <result column="product_id" property="productId" jdbcType="VARCHAR" />
     <result column="picture_url" property="pictureUrl" jdbcType="VARCHAR" />
-    <result column="product_price" property="productPrice" jdbcType="decimal" />
+    <result column="product_price" property="productPrice" jdbcType="DECIMAL" />
   </resultMap>
 
   <sql id="Base_Column_List" >
@@ -24,6 +24,13 @@
     <include refid="Base_Column_List" />
     from product_info
     where id = #{id}
+  </select>
+
+  <select id="selectByProductId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from product_info
+    where product_id = #{productId}
   </select>
 
 

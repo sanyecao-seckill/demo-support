@@ -24,16 +24,17 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Result<Integer> createProduct(ProductInfoDTO productInfoDTO) {
         ProductInfo productInfo = new ProductInfo();
+        BeanUtils.copyProperties(productInfoDTO,productInfo);
         int count =  productInfoMapper.insert(productInfo);
         BeanUtils.copyProperties(productInfoDTO,productInfo);
         return new Result<>(count);
     }
 
     @Override
-    public Result<ProductInfoDTO> queryProduct(Long id) {
-        ProductInfo productInfo = productInfoMapper.selectById(id);
+    public Result<ProductInfoDTO> queryProduct(String productId) {
+        ProductInfo productInfo = productInfoMapper.selectByProductId(productId);
         ProductInfoDTO infoDTO = new ProductInfoDTO();
-        BeanUtils.copyProperties(infoDTO,productInfo);
+        BeanUtils.copyProperties(productInfo,infoDTO);
         return new Result<>(infoDTO);
     }
 }

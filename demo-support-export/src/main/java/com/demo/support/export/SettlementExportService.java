@@ -13,5 +13,9 @@ public interface SettlementExportService {
      */
     Result<String> submitOrder(SettlementOrderDTO orderDTO);
 
+    /**
+     * 获取支付页URL
+     */
+    Result<String> payPageUrl(String orderId);
 
 }

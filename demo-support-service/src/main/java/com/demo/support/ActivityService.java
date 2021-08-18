@@ -18,8 +18,8 @@ public interface ActivityService {
 
     /**
      * 查询活动
-     * @param id
+     * @param productId
      * @return
      */
-    ActivityInfo queryActivityById(Long id);
+    ActivityInfo queryActivityById(String productId);
 }

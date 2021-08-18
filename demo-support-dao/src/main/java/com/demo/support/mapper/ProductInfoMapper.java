@@ -1,6 +1,7 @@
 package com.demo.support.mapper;
 
 import com.demo.support.dao.ProductInfo;
+import org.apache.ibatis.annotations.Param;
 
 public interface ProductInfoMapper {
 
@@ -17,5 +18,12 @@ public interface ProductInfoMapper {
      * @return
      */
     ProductInfo selectById(Long id);
+
+    /**
+     * 查询商品
+     * @param productId
+     * @return
+     */
+    ProductInfo selectByProductId(@Param("productId") String productId);
 
 }
