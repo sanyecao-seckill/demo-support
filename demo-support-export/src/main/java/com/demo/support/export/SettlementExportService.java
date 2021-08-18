@@ -16,6 +16,6 @@ public interface SettlementExportService {
     /**
      * 获取支付页URL
      */
-    Result<String> payPageUrl(String orderId);
+    Result<String> getPayPageUrl(String orderId);
 
 }

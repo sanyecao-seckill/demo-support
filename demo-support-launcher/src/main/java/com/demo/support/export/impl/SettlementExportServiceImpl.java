@@ -29,7 +29,7 @@ public class SettlementExportServiceImpl implements SettlementExportService {
     }
 
     @Override
-    public Result<String> payPageUrl(String orderId) {
+    public Result<String> getPayPageUrl(String orderId) {
         String payPageUrl = "http://localhost:8080/payPage?orderId="+orderId;
         return new Result<>(payPageUrl);
     }
