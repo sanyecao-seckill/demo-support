@@ -4,17 +4,17 @@ import java.io.Serializable;
 
 public class SettlementOrderDTO implements Serializable {
 
-    private Integer activityId;
+    private Integer payType;
     private String productId;
     private String buyNum;
     private String address;
 
-    public Integer getActivityId() {
-        return activityId;
+    public Integer getPayType() {
+        return payType;
     }
 
-    public void setActivityId(Integer activityId) {
-        this.activityId = activityId;
+    public void setPayType(Integer payType) {
+        this.payType = payType;
     }
 
     public String getProductId() {
