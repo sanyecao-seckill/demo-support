@@ -3,6 +3,8 @@ package com.demo.support.export.impl;
 import com.demo.support.ActivityService;
 import com.demo.support.SettlementService;
 import com.demo.support.dto.Result;
+import com.demo.support.dto.SettlementDataDTO;
+import com.demo.support.dto.SettlementDataRequestDTO;
 import com.demo.support.dto.SettlementOrderDTO;
 import com.demo.support.export.SettlementExportService;
 import org.apache.logging.log4j.LogManager;
@@ -18,6 +20,12 @@ public class SettlementExportServiceImpl implements SettlementExportService {
 
     @Autowired
     SettlementService settlementService;
+
+    @Override
+    public Result<SettlementDataDTO> settlementData(SettlementDataRequestDTO requestDTO) {
+        SettlementDataDTO dataDTO = settlementService.settlementData(requestDTO);
+        return new Result<>(dataDTO);
+    }
 
     @Override
     public Result<String> submitOrder(SettlementOrderDTO orderDTO) {

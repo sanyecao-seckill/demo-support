@@ -5,6 +5,8 @@ import com.demo.support.dao.ActivityInfo;
 import com.demo.support.dao.OrderRecord;
 import com.demo.support.dao.ProductInfo;
 import com.demo.support.dto.Result;
+import com.demo.support.dto.SettlementDataDTO;
+import com.demo.support.dto.SettlementDataRequestDTO;
 import com.demo.support.dto.SettlementOrderDTO;
 import com.demo.support.mapper.ActivityMapper;
 import com.demo.support.mapper.OrderRecordMapper;
@@ -68,5 +70,21 @@ public class SettlementServiceImpl implements SettlementService {
         orderRecordMapper.updateOrderStatus(orderId,1);
 
         return orderId;
+    }
+
+    @Override
+    public SettlementDataDTO settlementData(SettlementDataRequestDTO requestDTO) {
+        ActivityInfo activityInfo = activityMapper.selectByProductId(requestDTO.getProductId());
+
+//        ProductInfo productInfo = productInfoMapper.selectByProductId(requestDTO.getProductId());
+
+        SettlementDataDTO dataDTO = new SettlementDataDTO();
+
+        dataDTO.setAssets("");
+        dataDTO.setPayType(1);//在线支付
+        dataDTO.setTotalPrice(activityInfo.getActivityPrice().multiply(new BigDecimal(requestDTO.getBuyNum())));
+        dataDTO.setAddress("北京朝阳区");
+
+        return dataDTO;
     }
 }

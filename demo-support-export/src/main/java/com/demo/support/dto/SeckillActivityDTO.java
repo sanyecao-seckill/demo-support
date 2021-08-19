@@ -1,6 +1,7 @@
 package com.demo.support.dto;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class SeckillActivityDTO implements Serializable {
@@ -12,6 +13,8 @@ public class SeckillActivityDTO implements Serializable {
     private Date activityEnd;
     private Integer limitNum;
     private Integer stockNum;
+    private String activityPictureUrl;
+    private BigDecimal activityPrice;
 
     public Long getId() {
         return id;
@@ -71,5 +74,21 @@ public class SeckillActivityDTO implements Serializable {
 
     public void setStockNum(Integer stockNum) {
         this.stockNum = stockNum;
+    }
+
+    public String getActivityPictureUrl() {
+        return activityPictureUrl;
+    }
+
+    public void setActivityPictureUrl(String activityPictureUrl) {
+        this.activityPictureUrl = activityPictureUrl;
+    }
+
+    public BigDecimal getActivityPrice() {
+        return activityPrice;
+    }
+
+    public void setActivityPrice(BigDecimal activityPrice) {
+        this.activityPrice = activityPrice;
     }
 }

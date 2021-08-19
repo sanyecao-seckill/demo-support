@@ -1,5 +1,6 @@
 package com.demo.support.dao;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -18,6 +19,8 @@ public class ActivityInfo {
     private Integer limitNum;
     private Integer stockNum;
     private Integer status;//0:未开始  1：已开始  2：已结束
+    private String activityPictureUrl;
+    private BigDecimal activityPrice;
 
     public long getId() {
         return id;
@@ -81,5 +84,21 @@ public class ActivityInfo {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public String getActivityPictureUrl() {
+        return activityPictureUrl;
+    }
+
+    public void setActivityPictureUrl(String activityPictureUrl) {
+        this.activityPictureUrl = activityPictureUrl;
+    }
+
+    public BigDecimal getActivityPrice() {
+        return activityPrice;
+    }
+
+    public void setActivityPrice(BigDecimal activityPrice) {
+        this.activityPrice = activityPrice;
     }
 }

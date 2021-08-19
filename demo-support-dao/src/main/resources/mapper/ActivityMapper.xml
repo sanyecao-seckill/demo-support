@@ -10,17 +10,20 @@
     <result column="limit_num" property="limitNum" jdbcType="INTEGER" />
     <result column="stock_num" property="stockNum" jdbcType="INTEGER" />
     <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="activity_picture_url" property="activityPictureUrl" jdbcType="VARCHAR" />
+    <result column="activity_price" property="activityPrice" jdbcType="DECIMAL" />
+
   </resultMap>
 
   <sql id="Base_Column_List" >
-    id, activity_name,product_id,activity_start,activity_end,limit_num,stock_num,status
+    id, activity_name,product_id,activity_start,activity_end,limit_num,stock_num,status,activity_picture_url,activity_price
   </sql>
 
   <insert id="insert" parameterType="com.demo.support.dao.ActivityInfo" useGeneratedKeys="true" keyProperty="id">
     insert into seckill_activity(
-    activity_name,product_id,activity_start,activity_end,limit_num,stock_num,status)
+    activity_name,product_id,activity_start,activity_end,limit_num,stock_num,status,activity_picture_url,activity_price)
     values (#{activityName},#{productId},#{activityStart},#{activityEnd},
-    #{limitNum},#{stockNum},#{status})
+    #{limitNum},#{stockNum},#{status},#{activityPictureUrl},#{activityPrice})
   </insert>
 
   <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Long" >
