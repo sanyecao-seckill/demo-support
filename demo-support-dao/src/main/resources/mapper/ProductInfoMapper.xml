@@ -7,16 +7,17 @@
     <result column="product_id" property="productId" jdbcType="VARCHAR" />
     <result column="picture_url" property="pictureUrl" jdbcType="VARCHAR" />
     <result column="product_price" property="productPrice" jdbcType="DECIMAL" />
+    <result column="tag" property="tag" jdbcType="INTEGER" />
   </resultMap>
 
   <sql id="Base_Column_List" >
-    id, product_name,product_id,picture_url,product_price
+    id, product_name,product_id,picture_url,product_price,tag
   </sql>
 
   <insert id="insert" parameterType="com.demo.support.dao.ProductInfo" useGeneratedKeys="true" keyProperty="id">
     insert into product_info(
-    product_name,product_id,picture_url,product_price)
-    values (#{productName},#{productId},#{pictureUrl},#{productPrice})
+    product_name,product_id,picture_url,product_price,tag)
+    values (#{productName},#{productId},#{pictureUrl},#{productPrice},#{tag})
   </insert>
 
   <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Long" >
@@ -32,6 +33,12 @@
     from product_info
     where product_id = #{productId}
   </select>
+
+  <update id="updateTag">
+    update product_info
+    set tag = #{tag}
+    where product_id = #{productId}
+  </update>
 
 
 </mapper>

@@ -6,8 +6,9 @@ public class SettlementOrderDTO implements Serializable {
 
     private Integer payType;
     private String productId;
-    private String buyNum;
+    private Integer buyNum;
     private String address;
+    private String userId;
 
     public Integer getPayType() {
         return payType;
@@ -25,11 +26,11 @@ public class SettlementOrderDTO implements Serializable {
         this.productId = productId;
     }
 
-    public String getBuyNum() {
+    public Integer getBuyNum() {
         return buyNum;
     }
 
-    public void setBuyNum(String buyNum) {
+    public void setBuyNum(Integer buyNum) {
         this.buyNum = buyNum;
     }
 
@@ -39,5 +40,13 @@ public class SettlementOrderDTO implements Serializable {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 }

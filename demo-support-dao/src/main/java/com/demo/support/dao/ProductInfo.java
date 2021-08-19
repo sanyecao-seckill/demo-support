@@ -16,6 +16,7 @@ public class ProductInfo {
     private String productName;
     private String pictureUrl;
     private BigDecimal productPrice;
+    private Integer tag;
 
     public long getId() {
         return id;
@@ -55,5 +56,13 @@ public class ProductInfo {
 
     public void setProductPrice(BigDecimal productPrice) {
         this.productPrice = productPrice;
+    }
+
+    public Integer getTag() {
+        return tag;
+    }
+
+    public void setTag(Integer tag) {
+        this.tag = tag;
     }
 }

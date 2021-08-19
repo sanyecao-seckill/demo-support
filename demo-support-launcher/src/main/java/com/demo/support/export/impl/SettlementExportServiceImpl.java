@@ -1,6 +1,7 @@
 package com.demo.support.export.impl;
 
 import com.demo.support.ActivityService;
+import com.demo.support.SettlementService;
 import com.demo.support.dto.Result;
 import com.demo.support.dto.SettlementOrderDTO;
 import com.demo.support.export.SettlementExportService;
@@ -15,22 +16,20 @@ public class SettlementExportServiceImpl implements SettlementExportService {
     @Autowired
     ActivityService activityService;
 
+    @Autowired
+    SettlementService settlementService;
+
     @Override
     public Result<String> submitOrder(SettlementOrderDTO orderDTO) {
-        //1.校验
 
-        //2.下单-初始化
+        String orderId = settlementService.submitOrder(orderDTO);
 
-        //3.更新库存
-
-        //4.更新订单-成功
-
-        return null;
+        return new Result<>(orderId);
     }
 
     @Override
     public Result<String> getPayPageUrl(String orderId) {
-        String payPageUrl = "http://localhost:8080/payPage?orderId="+orderId;
+        String payPageUrl = "http://localhost:8080/payPage?orderId="+orderId+"&orderPrice=1998";
         return new Result<>(payPageUrl);
     }
 }

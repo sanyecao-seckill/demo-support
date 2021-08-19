@@ -11,6 +11,7 @@ public class ProductInfoDTO implements Serializable {
     private String productName;
     private String pictureUrl;
     private BigDecimal productPrice;
+    private Integer tag;
 
     public long getId() {
         return id;
@@ -50,5 +51,13 @@ public class ProductInfoDTO implements Serializable {
 
     public void setProductPrice(BigDecimal productPrice) {
         this.productPrice = productPrice;
+    }
+
+    public Integer getTag() {
+        return tag;
+    }
+
+    public void setTag(Integer tag) {
+        this.tag = tag;
     }
 }

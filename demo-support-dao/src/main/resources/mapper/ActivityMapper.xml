@@ -40,5 +40,26 @@
     limit 1
   </select>
 
+  <select id="selectByCondition" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from seckill_activity
+    where product_id = #{productId}
+    and status = #{status}
+    order by id asc
+    limit 1
+  </select>
+
+  <update id="updateStatus">
+    update seckill_activity
+    set status = #{status}
+    where id = #{id}
+  </update>
+
+  <update id="updateStockNum">
+    update seckill_activity
+    set stock_num = stock_num - #{buyNum}
+    where id = #{id}
+  </update>
 
 </mapper>

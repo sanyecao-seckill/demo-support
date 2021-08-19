@@ -10,7 +10,7 @@ public interface SettlementService {
      * @param orderDTO
      * @return 订单号
      */
-    Result<String> submitOrder(SettlementOrderDTO orderDTO);
+    String submitOrder(SettlementOrderDTO orderDTO);
 
 
 }

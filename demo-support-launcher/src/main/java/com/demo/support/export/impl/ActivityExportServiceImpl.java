@@ -5,6 +5,7 @@ import com.demo.support.constant.ResultCodeConstant;
 import com.demo.support.dao.ActivityInfo;
 import com.demo.support.dto.Result;
 import com.demo.support.dto.SeckillActivityDTO;
+import com.demo.support.exception.BizException;
 import com.demo.support.export.ActivityExportService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -43,5 +44,31 @@ public class ActivityExportServiceImpl implements ActivityExportService {
         BeanUtils.copyProperties(activityInfo,activityDTO);
 
         return new Result<>(activityDTO);
+    }
+
+    @Override
+    public Result<Integer> startActivity(String productId) {
+        Integer count = 0;
+        try{
+           count = activityService.startActivity(productId);
+        }catch (BizException e){
+            return new Result<>(ResultCodeConstant.SYSTEM_EXCEPTION,e.getErrorCode(),count);
+        }catch (Exception e){
+            return new Result<>(ResultCodeConstant.SYSTEM_EXCEPTION,"系统异常",null);
+        }
+        return new Result<>(count);
+    }
+
+    @Override
+    public Result<Integer> endActivity(String productId) {
+        Integer count = 0;
+        try{
+            count = activityService.endActivity(productId);
+        }catch (BizException e){
+            return new Result<>(ResultCodeConstant.SYSTEM_EXCEPTION,e.getErrorCode(),count);
+        }catch (Exception e){
+            return new Result<>(ResultCodeConstant.SYSTEM_EXCEPTION,"系统异常",null);
+        }
+        return new Result<>(count);
     }
 }

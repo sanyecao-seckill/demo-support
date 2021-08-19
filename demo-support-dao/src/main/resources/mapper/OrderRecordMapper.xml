@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.demo.support.mapper.OrderRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.demo.support.dao.OrderRecord" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="order_id" property="orderId" jdbcType="VARCHAR" />
+    <result column="product_id" property="productId" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="buy_num" property="buyNum" jdbcType="INTEGER" />
+    <result column="order_price" property="orderPrice" jdbcType="DECIMAL" />
+
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="pay_type" property="payType" jdbcType="INTEGER" />
+    <result column="order_time" property="orderTime" jdbcType="DATE" />
+    <result column="order_status" property="orderStatus" jdbcType="INTEGER" />
+
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, order_id,product_id,user_id,buy_num,order_price,address,pay_type,order_time,order_status
+  </sql>
+
+  <insert id="insert" parameterType="com.demo.support.dao.ProductInfo" useGeneratedKeys="true" keyProperty="id">
+    insert into order_record(
+    order_id,product_id,user_id,buy_num,order_price,address,pay_type,order_time,order_status)
+    values (#{orderId},#{productId},#{userId},#{buyNum},#{orderPrice},#{address},#{payType},#{orderTime},#{orderStatus})
+  </insert>
+
+  <select id="selectByOrderId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from order_record
+    where order_id = #{orderId}
+  </select>
+
+  <update id="updateOrderStatus">
+    update order_record
+    set
+    order_status = #{orderStatus}
+    where
+    order_id = #{orderId}
+  </update>
+
+</mapper>

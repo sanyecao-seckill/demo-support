@@ -26,4 +26,11 @@ public interface ProductInfoMapper {
      */
     ProductInfo selectByProductId(@Param("productId") String productId);
 
+    /**
+     * 更新商品标签 1：正常商品，2：秒杀商品 3：预约商品
+     * @param productId
+     * @return
+     */
+    int updateTag(@Param("productId") String productId,@Param("tag") Integer tag);
+
 }

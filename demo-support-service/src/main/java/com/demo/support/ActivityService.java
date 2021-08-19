@@ -1,6 +1,8 @@
 package com.demo.support;
 
 import com.demo.support.dao.ActivityInfo;
+import com.demo.support.dto.Result;
+import com.demo.support.exception.BizException;
 
 /**
  * @Description:
@@ -22,4 +24,19 @@ public interface ActivityService {
      * @return
      */
     ActivityInfo queryActivityById(String productId);
+
+    /**
+     * 活动开始
+     * @param productId
+     * @return
+     */
+    Integer startActivity(String productId) throws BizException;
+
+    /**
+     * 活动关闭
+     * @param productId
+     * @return
+     */
+    Integer endActivity(String productId) throws BizException;
+
 }

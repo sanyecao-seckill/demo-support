@@ -20,4 +20,18 @@ public interface ActivityExportService {
      */
     Result<SeckillActivityDTO> queryActivity(String productId);
 
+    /**
+     * 活动开始
+     * @param productId
+     * @return
+     */
+    Result<Integer> startActivity(String productId);
+
+    /**
+     * 活动关闭
+     * @param productId
+     * @return
+     */
+    Result<Integer> endActivity(String productId);
+
 }
