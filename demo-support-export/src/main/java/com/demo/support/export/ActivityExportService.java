@@ -21,6 +21,13 @@ public interface ActivityExportService {
     Result<SeckillActivityDTO> queryActivity(String productId);
 
     /**
+     * 查询活动
+     * @param productId
+     * @return
+     */
+    Result<SeckillActivityDTO> queryActivityByCondition(String productId,Integer status);
+
+    /**
      * 活动开始
      * @param productId
      * @return

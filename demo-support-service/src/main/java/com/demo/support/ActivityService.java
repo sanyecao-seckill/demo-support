@@ -26,6 +26,13 @@ public interface ActivityService {
     ActivityInfo queryActivityById(String productId);
 
     /**
+     * 查询活动
+     * @param productId
+     * @return
+     */
+    ActivityInfo queryActivityByCondition(String productId,Integer status);
+
+    /**
      * 活动开始
      * @param productId
      * @return

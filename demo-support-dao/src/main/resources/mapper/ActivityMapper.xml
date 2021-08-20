@@ -39,7 +39,7 @@
     from seckill_activity
     where product_id = #{productId}
     and status = 1
-    order by id asc
+    order by id desc
     limit 1
   </select>
 
@@ -48,8 +48,10 @@
     <include refid="Base_Column_List" />
     from seckill_activity
     where product_id = #{productId}
-    and status = #{status}
-    order by id asc
+    <if test="status != null">
+      and status = #{status}
+    </if>
+    order by id desc
     limit 1
   </select>
 

@@ -47,6 +47,17 @@ public class ActivityExportServiceImpl implements ActivityExportService {
     }
 
     @Override
+    public Result<SeckillActivityDTO> queryActivityByCondition(String productId, Integer status) {
+        ActivityInfo activityInfo = activityService.queryActivityByCondition(productId,status);
+
+        SeckillActivityDTO activityDTO = new SeckillActivityDTO();
+
+        BeanUtils.copyProperties(activityInfo,activityDTO);
+
+        return new Result<>(activityDTO);
+    }
+
+    @Override
     public Result<Integer> startActivity(String productId) {
         Integer count = 0;
         try{

@@ -35,6 +35,11 @@ public class ActivityServiceImpl implements ActivityService {
     }
 
     @Override
+    public ActivityInfo queryActivityByCondition(String productId,Integer status) {
+        return activityMapper.selectByCondition(productId,status);
+    }
+
+    @Override
     public Integer startActivity(String productId) throws BizException {
         //查询未开始的
         ActivityInfo activityInfo = activityMapper.selectByCondition(productId,0);
