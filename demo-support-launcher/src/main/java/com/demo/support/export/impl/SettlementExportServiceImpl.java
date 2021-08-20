@@ -37,7 +37,7 @@ public class SettlementExportServiceImpl implements SettlementExportService {
 
     @Override
     public Result<String> getPayPageUrl(String orderId) {
-        String payPageUrl = "http://localhost:8080/payPage?orderId="+orderId+"&orderPrice=1998";
+        String payPageUrl = "http://localhost:8080/mock/payPage?orderId="+orderId+"&orderPrice=1998";
         return new Result<>(payPageUrl);
     }
 }
