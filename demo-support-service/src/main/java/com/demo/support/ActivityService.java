@@ -16,7 +16,7 @@ public interface ActivityService {
      * @param activityInfo
      * @return
      */
-    int createActivity(ActivityInfo activityInfo);
+    int createActivity(ActivityInfo activityInfo) throws BizException;
 
     /**
      * 查询活动

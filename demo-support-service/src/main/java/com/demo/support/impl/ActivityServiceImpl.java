@@ -25,7 +25,12 @@ public class ActivityServiceImpl implements ActivityService {
     ProductInfoMapper productInfoMapper;
 
     @Override
-    public int createActivity(ActivityInfo activityInfo) {
+    public int createActivity(ActivityInfo activityInfo) throws BizException {
+        ActivityInfo existRecord = activityMapper.selectByCondition(activityInfo.getProductId(),null);
+        if(existRecord!=null && (existRecord.getStatus()==1 || existRecord.getStatus()==0)){
+            throw new BizException("活动已存在");
+        }
+        activityInfo.setStatus(0);
         return activityMapper.insert(activityInfo);
     }
 

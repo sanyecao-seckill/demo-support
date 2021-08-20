@@ -51,7 +51,7 @@ public class SettlementServiceImpl implements SettlementService {
         OrderRecord orderRecord = new OrderRecord();
 
         orderRecord.setOrderId(orderId);
-        BigDecimal orderPrice = productInfo.getProductPrice().multiply(new BigDecimal(orderDTO.getBuyNum()));
+        BigDecimal orderPrice = activityInfo.getActivityPrice().multiply(new BigDecimal(orderDTO.getBuyNum()));
         orderRecord.setOrderPrice(orderPrice);
         orderRecord.setOrderStatus(0);
         orderRecord.setAddress(orderDTO.getAddress());

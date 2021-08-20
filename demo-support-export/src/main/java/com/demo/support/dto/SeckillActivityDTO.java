@@ -15,6 +15,7 @@ public class SeckillActivityDTO implements Serializable {
     private Integer stockNum;
     private String activityPictureUrl;
     private BigDecimal activityPrice;
+    private Integer status;
 
     public Long getId() {
         return id;
@@ -90,5 +91,13 @@ public class SeckillActivityDTO implements Serializable {
 
     public void setActivityPrice(BigDecimal activityPrice) {
         this.activityPrice = activityPrice;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 }

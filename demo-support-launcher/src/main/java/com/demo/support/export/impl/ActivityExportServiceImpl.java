@@ -29,6 +29,9 @@ public class ActivityExportServiceImpl implements ActivityExportService {
             int count = activityService.createActivity(activityInfo);
 
             return new Result<>(count);
+        }catch (BizException e){
+            logger.error("发生异常了",e);
+            return new Result<>(ResultCodeConstant.SYSTEM_EXCEPTION,e.getMessage(),null);
         }catch (Exception e){
             logger.error("发生异常了",e);
         }
