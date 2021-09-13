@@ -19,6 +19,18 @@ public class ActivityExportServiceImpl implements ActivityExportService {
     @Autowired
     ActivityService activityService;
 
+
+    @Override
+    public Result<Integer> queryStore(String productId) {
+        try{
+            Integer count = activityService.queryStore(productId);
+            return new Result<>(count);
+        }catch (Exception e){
+            logger.error("发生异常了",e);
+        }
+        return new Result<>(ResultCodeConstant.SYSTEM_EXCEPTION,"系统异常",null);
+    }
+
     @Override
     public Result<Integer> createActivity(SeckillActivityDTO activityDTO) {
         try{

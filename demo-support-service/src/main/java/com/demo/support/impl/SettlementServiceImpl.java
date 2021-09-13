@@ -11,6 +11,9 @@ import com.demo.support.dto.SettlementOrderDTO;
 import com.demo.support.mapper.ActivityMapper;
 import com.demo.support.mapper.OrderRecordMapper;
 import com.demo.support.mapper.ProductInfoMapper;
+import com.demo.support.tools.RedisTools;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +29,8 @@ import java.util.Date;
 @Service
 public class SettlementServiceImpl implements SettlementService {
 
+    Logger logger = LogManager.getLogger(SettlementServiceImpl.class);
+
     @Autowired
     OrderRecordMapper orderRecordMapper;
 
@@ -34,6 +39,9 @@ public class SettlementServiceImpl implements SettlementService {
 
     @Autowired
     ProductInfoMapper productInfoMapper;
+
+    @Autowired
+    RedisTools redisTools;
 
     @Override
     public String submitOrder(SettlementOrderDTO orderDTO) {
@@ -44,9 +52,16 @@ public class SettlementServiceImpl implements SettlementService {
         //1.4 校验商品是否是秒杀商品
         ActivityInfo activityInfo = activityMapper.selectByProductId(orderDTO.getProductId());
 
-        ProductInfo productInfo = productInfoMapper.selectByProductId(orderDTO.getProductId());
+//        ProductInfo productInfo = productInfoMapper.selectByProductId(orderDTO.getProductId());
 
-        //2.下单-初始化
+        //2.限购
+        Integer count = redisTools.evalsha("store_"+orderDTO.getProductId(),String.valueOf(orderDTO.getBuyNum()));
+        logger.error(orderDTO.getUserId()+"限购结果：",count);
+        if(count==null || count<=0){
+            return null;
+        }
+
+        //3.下单-初始化
         String orderId = String.valueOf(System.currentTimeMillis());
         OrderRecord orderRecord = new OrderRecord();
 

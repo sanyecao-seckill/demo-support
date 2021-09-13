@@ -46,4 +46,10 @@ public interface ActivityService {
      */
     Integer endActivity(String productId) throws BizException;
 
+    /**
+     * 活动库存查询
+     * @param productId
+     * @return
+     */
+    Integer queryStore(String productId);
 }

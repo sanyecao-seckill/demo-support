@@ -5,6 +5,7 @@ import com.demo.support.ActivityService;
 import com.demo.support.exception.BizException;
 import com.demo.support.mapper.ActivityMapper;
 import com.demo.support.mapper.ProductInfoMapper;
+import com.demo.support.tools.RedisTools;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +24,8 @@ public class ActivityServiceImpl implements ActivityService {
     ActivityMapper activityMapper;
     @Autowired
     ProductInfoMapper productInfoMapper;
+    @Autowired
+    RedisTools redisTools;
 
     @Override
     public int createActivity(ActivityInfo activityInfo) throws BizException {
@@ -60,6 +63,10 @@ public class ActivityServiceImpl implements ActivityService {
         activityMapper.updateStatus(activityInfo.getId(),1);
         //更改商品标识为秒杀
         productInfoMapper.updateTag(productId,2);
+
+        //将库存放入Redis
+        redisTools.set("store_"+productId,String.valueOf(activityInfo.getStockNum()));
+
         return 1;
     }
 
@@ -72,5 +79,12 @@ public class ActivityServiceImpl implements ActivityService {
         //更改商品标识为普通
         productInfoMapper.updateTag(productId,1);
         return 1;
+    }
+
+    @Override
+    public Integer queryStore(String productId) {
+        //查询进行中的
+        ActivityInfo activityInfo = activityMapper.selectByCondition(productId,1);
+        return activityInfo.getStockNum();
     }
 }
