@@ -50,11 +50,11 @@ public class RedisTools {
      * String-evalsha
      * @param key
      */
-    public Integer evalsha(String key,String buyNum){
+    public Long evalsha(String key,String buyNum){
         try (Jedis jedis = jedisPool.getResource()) {
             Object obj = jedis.evalsha(STORE_DEDUCTION_SCRIPT_SHA1,2,key,buyNum);
             //脚本中返回的结果是0或1，表示失败或者成功
-            return (Integer)obj;
+            return (Long)obj;
         }
     }
 

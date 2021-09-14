@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.Random;
 
 /**
  * @Description:
@@ -50,20 +51,22 @@ public class SettlementServiceImpl implements SettlementService {
         //1.2 校验限购数量
         //1.3 校验库存
         //1.4 校验商品是否是秒杀商品
-        ActivityInfo activityInfo = activityMapper.selectByProductId(orderDTO.getProductId());
 
 //        ProductInfo productInfo = productInfoMapper.selectByProductId(orderDTO.getProductId());
 
         //2.限购
-        Integer count = redisTools.evalsha("store_"+orderDTO.getProductId(),String.valueOf(orderDTO.getBuyNum()));
-        logger.error(orderDTO.getUserId()+"限购结果：",count);
+        Long count = redisTools.evalsha("store_"+orderDTO.getProductId(),String.valueOf(orderDTO.getBuyNum()));
+        logger.error(orderDTO.getUserId()+"限购结果："+count);
         if(count==null || count<=0){
             return null;
         }
 
         //3.下单-初始化
-        String orderId = String.valueOf(System.currentTimeMillis());
+        Random random = new Random(10000);
+        String orderId = String.valueOf(System.currentTimeMillis())+random.nextInt();
         OrderRecord orderRecord = new OrderRecord();
+
+        ActivityInfo activityInfo = activityMapper.selectByProductId(orderDTO.getProductId());
 
         orderRecord.setOrderId(orderId);
         BigDecimal orderPrice = activityInfo.getActivityPrice().multiply(new BigDecimal(orderDTO.getBuyNum()));

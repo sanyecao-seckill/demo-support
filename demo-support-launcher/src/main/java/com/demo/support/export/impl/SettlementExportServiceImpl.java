@@ -34,10 +34,14 @@ public class SettlementExportServiceImpl implements SettlementExportService {
 
     @Override
     public Result<String> submitOrder(SettlementOrderDTO orderDTO) {
+        try{
+            String orderId = settlementService.submitOrder(orderDTO);
 
-        String orderId = settlementService.submitOrder(orderDTO);
-
-        return new Result<>(orderId);
+            return new Result<>(orderId);
+        }catch (Exception e){
+            logger.error("提单异常",e);
+        }
+        return new Result<>(null);
     }
 
     @Override
