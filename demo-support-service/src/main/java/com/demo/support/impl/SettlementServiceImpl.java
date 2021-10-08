@@ -46,13 +46,7 @@ public class SettlementServiceImpl implements SettlementService {
 
     @Override
     public String submitOrder(SettlementOrderDTO orderDTO) {
-        //1.校验
-        //1.1 校验活动是否在有效期
-        //1.2 校验限购数量
-        //1.3 校验库存
-        //1.4 校验商品是否是秒杀商品
-
-//        ProductInfo productInfo = productInfoMapper.selectByProductId(orderDTO.getProductId());
+        //1.校验商品标识
 
         //2.限购
         Long count = redisTools.evalsha("store_"+orderDTO.getProductId(),String.valueOf(orderDTO.getBuyNum()));
