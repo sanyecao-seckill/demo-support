@@ -88,8 +88,6 @@ public class SettlementServiceImpl implements SettlementService {
     public SettlementDataDTO settlementData(SettlementDataRequestDTO requestDTO) {
         ActivityInfo activityInfo = activityMapper.selectByProductId(requestDTO.getProductId());
 
-//        ProductInfo productInfo = productInfoMapper.selectByProductId(requestDTO.getProductId());
-
         SettlementDataDTO dataDTO = new SettlementDataDTO();
 
         dataDTO.setAssets("");
