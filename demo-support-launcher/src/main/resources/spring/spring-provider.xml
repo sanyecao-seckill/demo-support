@@ -6,7 +6,7 @@
        http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
     <dubbo:application name="demo-support-provider"/>
-    <dubbo:protocol name="dubbo"/>
+    <dubbo:protocol name="dubbo" threads="50" dispatcher="message" />
     <dubbo:registry address="127.0.0.1:2181" register="false"/>
 
     <bean id="activityExportService" class="com.demo.support.export.impl.ActivityExportServiceImpl"/>

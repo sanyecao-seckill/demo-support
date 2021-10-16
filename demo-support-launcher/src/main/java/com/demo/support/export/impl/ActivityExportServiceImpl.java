@@ -64,6 +64,9 @@ public class ActivityExportServiceImpl implements ActivityExportService {
     @Override
     public Result<SeckillActivityDTO> queryActivityByCondition(String productId, Integer status) {
         ActivityInfo activityInfo = activityService.queryActivityByCondition(productId,status);
+        if(activityInfo == null){
+            return new Result<>(null);
+        }
 
         SeckillActivityDTO activityDTO = new SeckillActivityDTO();
 
